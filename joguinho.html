@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pong Game</title>
     <link rel="stylesheet" href="styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 </head>
 <body>
     <audio id="som" autoplay="autoplay" controls="controls" loop hidden>
@@ -19,10 +20,10 @@
             </h1>
         </div>
         <div>
-            <button onclick="Start()">Start</button>
+            <button class="Start-button" onclick="Start()">Start</button>
         </div>
-        <div class="audio">
-            <img src="" alt="">
+        <div id="div-audio" class="audio">
+            <img onclick="Play()" id="audio" class="mutado" src="content/img/volume-mute.png" alt="" width="40" height="40">
         </div>
     </div>
     <div>
@@ -33,9 +34,37 @@
     </div>
 
     <script>
-        window.onclick = function () {
+       /*  window.onclick = function () {
             document.getElementById("som").play()
+        } */
+
+        function Play() {
+            getElementById
+            if ($('#audio').hasClass("mutado")) {
+                document.getElementById("som").play()
+                document.getElementById("audio").remove()
+                som = document.createElement('img')
+                som.setAttribute("class", "ativo")
+                som.setAttribute("id", "audio")
+                som.setAttribute("width", "40")
+                som.setAttribute("height", "40")
+                som.src = "content/img/volume-on.png"
+                document.getElementById("div-audio").appendChild(som)
+                document.getElementById("audio").addEventListener('click', Play())
+            }
+            else {
+                document.getElementById("som").pause()
+                document.getElementById("audio").remove()
+                som = document.createElement('img')
+                som.setAttribute("class", "ativo")
+                som.setAttribute("id", "audio")
+                som.src = "content/img/volume-on.png"
+                document.getElementById("div-audio").appendChild(som)
+                document.getElementById("audio").addEventListener('click', Play())
+            }
+            
         }
+
     </script>
 </body>
 </html>
