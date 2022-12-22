@@ -1,45 +1,57 @@
-window.onload = function() {
-    setInterval(execucacao, 1000 / 30)
+function Start() {
+    Init() 
+    document.getElementById("Start").remove()
+    setInterval(principal, 1000 / 30)
 }
-var wCampo = 700
-var hCampo = 500
-var wRede = 5
-var hRede = 500
 
-var diametroBola = 10
-var xBola = yBola = 500
-
-var velocidadeXBola = velocidadeYBola = -5
-var velocidadeJogador2 = 8
-var hRaquete = 80
-var posicaoJogador1 = posicaoJogador2 = 10
-var efeitoRaquete = 0.4
-var pontuacaoJogador1 = pontuacaoJogador2 = 0
-var folhaDesenho = document.getElementById("folha");
-var areaDesenho = folhaDesenho.getContext("2d");
-folhaDesenho.addEventListener('mousemove', function(e){
-    posicaoJogador1 = e.clientY - hRaquete / 2
-})
-function execucacao() { 
+function Init() {
+    //Campo
+    wCampo = 700
+    hCampo = 500
+    wRede = 5
+    hRede = 500
+    //Jogadores    
+    hRaquete = 60
+    wRaquete = 10
+    posicaoJogador1 = posicaoJogador2 = 10
+    efeitoRaquete = 0.3
+    pontuacaoJogador1 = pontuacaoJogador2 = 0 
+    velocidadeJogador2 = 8   
+    //Bola  
+    diametroBola = 10
+    xBola = yBola = 300
+    velocidadeXBola = velocidadeYBola = -8
+    //Canva
+    folhaDesenho = document.getElementById("folha");
+    areaDesenho = folhaDesenho.getContext("2d");
+    folhaDesenho.addEventListener('mousemove', function(e){
+        posicaoJogador1 = e.clientY - hRaquete / 2
+    })
+}
+function principal() {
+    draw()
+    calculos()
+}
+function draw() {
     areaDesenho.fillStyle = '#286047'
     areaDesenho.fillRect(0, 0, wCampo, hCampo) // Campo
     
     areaDesenho.fillStyle = 'white'
     areaDesenho.fillRect(wCampo/2 - wRede/2, 0, wRede, hRede) // Rede
-    areaDesenho.fillRect(0, posicaoJogador1, 10, hRaquete) // Raquete 1 
-    areaDesenho.fillRect(690, posicaoJogador2, 10, hRaquete) // Raquete 2
+    areaDesenho.fillRect(0, posicaoJogador1, wRaquete, hRaquete) // Raquete 1 
+    areaDesenho.fillRect(wCampo - wRaquete, posicaoJogador2, wRaquete, hRaquete) // Raquete 2
     areaDesenho.fillRect(xBola - diametroBola/2, yBola - diametroBola/2, diametroBola, diametroBola) // bola 
 
     //Escrever Pontuação do Jogo
     areaDesenho.fillText("Jogador1 - " + pontuacaoJogador1 + " pontos", 100, 100)
     areaDesenho.fillText("Jogador2 - " + pontuacaoJogador2 + " pontos", 450, 100)
     
+}
+function calculos() { 
+//Regras do Jogo
+    
     xBola += velocidadeXBola
     yBola += velocidadeYBola
-
-
-//Regras do Jogo
-
     if (yBola < 0 && velocidadeYBola < 0) {
         velocidadeYBola = -velocidadeYBola
      } //Colisão em Cima
@@ -50,13 +62,13 @@ function execucacao() {
     } //Colisão em Baixo
 
     //Verifica se Jogador2 fez o ponto
-    if (xBola < 10) {
+    if (xBola < wRaquete) {
         if (yBola > posicaoJogador1 && yBola < posicaoJogador1 + hRaquete) {
             velocidadeXBola = -velocidadeXBola
             var diferencaY = yBola - (posicaoJogador1 + hRaquete / 2)
             velocidadeYBola = diferencaY * efeitoRaquete
         }
-        else{
+        else if(xBola < wRaquete/11/2){
             pontuacaoJogador2++
             xBola = wCampo/2
             yBola = hCampo / 2
@@ -67,13 +79,13 @@ function execucacao() {
     
 
     //Verifica se Jogador1 fez o ponto
-    if (xBola > wCampo - 10) {
+    if (xBola > wCampo - wRaquete) {
         if (yBola > posicaoJogador2 && yBola < posicaoJogador2 + hRaquete) {
             velocidadeXBola = -velocidadeXBola
             var diferencaY = yBola - (posicaoJogador2 + hRaquete / 2)
             velocidadeYBola = diferencaY * efeitoRaquete
         }
-        else{
+        else if(xBola > wCampo - wRaquete/11/2){
             pontuacaoJogador1++
             xBola = wCampo/2
             yBola = hCampo / 2
