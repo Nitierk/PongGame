@@ -4,11 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pong Game</title>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <button id="Start" onclick="Start()">Start</button>
-    <canvas id="folha" width="700" height="500"></canvas>
-    <script src="script/js.js"></script>
+    <audio id="som" autoplay="autoplay" controls="controls" loop hidden>
+        <source src="content/song/Local Forecast-Elevator.mp3" type="audio/mp3" />
+        seu navegador não suporta HTML5
+    </audio>
+    <div id="Start" class="Start">
+        <div >
+            <h1>
+                Pong Game   
+            </h1>
+        </div>
+        <div>
+            <button onclick="Start()">Start</button>
+        </div>
+        <div class="audio">
+            <img src="" alt="">
+        </div>
+    </div>
+    <div>
+        
+        
+        <canvas id="folha" width="700" height="500"></canvas>
+        <script src="script/js.js"></script>
+    </div>
+
+    <script>
+        window.onclick = function () {
+            document.getElementById("som").play()
+        }
+    </script>
 </body>
 </html>
