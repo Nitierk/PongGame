@@ -9,7 +9,7 @@
 </head>
 <body>
     <audio id="som" autoplay="autoplay" controls="controls" loop hidden>
-        <source src="content/song/Local Forecast-Elevator.mp3" type="audio/mp3" />
+        <source src="content/song/song.mp3" type="audio/mp3" />
         seu navegador não suporta HTML5
     </audio>
     <div id="Start" class="Start">
@@ -22,7 +22,9 @@
             <button onclick="Start()">Start</button>
         </div>
         <div class="audio">
-            <img src="" alt="">
+            <button onclick="document.getElementById('som').volume+=0.1">Aumentar volume</button>
+            <button onclick="document.getElementById('som').volume-=0.1">Diminuir volume</button>
+	</div>
         </div>
     </div>
     <div>
@@ -35,6 +37,7 @@
     <script>
         window.onclick = function () {
             document.getElementById("som").play()
+
         }
     </script>
 </body>
