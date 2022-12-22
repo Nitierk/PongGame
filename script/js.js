@@ -33,12 +33,12 @@ function execucacao() {
 
     if (yBola < 0 && velocidadeYBola < 0) {
         velocidadeYBola = -velocidadeYBola
-     } //Batendo em Cima
+     } //Colisão em Cima
 
 
     if (yBola > hCampo  && velocidadeYBola > 0) {
         velocidadeYBola = -velocidadeYBola
-    } //Batendo em Baixo
+    } //Colisão em Baixo
 
 
 }
