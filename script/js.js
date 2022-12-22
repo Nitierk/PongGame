@@ -1,9 +1,8 @@
-
-
 window.onload = function() {
     setInterval(execucacao, 1000 / 30)
 }
 var xBola = yBola = 30
+var velocidadeXBola = velocidadeYBola = 3
 function execucacao() { 
     var folhaDesenho = document.getElementById("folha");
     var areaDesenho = folhaDesenho.getContext("2d");
@@ -28,6 +27,18 @@ function execucacao() {
     areaDesenho.fillRect(687, 200, 10, 80) // Raquete 2
     areaDesenho.fillRect(xBola - diametroBola/2, yBola - diametroBola/2, diametroBola, diametroBola) // bola 
 
-    xBola += 1
-    yBola += 1
+    
+    xBola += velocidadeXBola
+    yBola += velocidadeYBola
+
+    if (yBola < 0 && velocidadeYBola < 0) {
+        velocidadeYBola = -velocidadeYBola
+     } //Batendo em Cima
+
+
+    if (yBola > hCampo  && velocidadeYBola > 0) {
+        velocidadeYBola = -velocidadeYBola
+    } //Batendo em Baixo
+
+
 }
