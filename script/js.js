@@ -1,26 +1,47 @@
 function Start() {
-    Init() 
+    Init()
     document.getElementById("Start").remove()
     setInterval(principal, 1000 / 30)
 }
 
 function Init() {
+    dificuldade =  $('input[name=dificult]:checked', '#myForm').val()
+    switch (dificuldade) {
+        case 'Facil':
+            velocidadeJogador2 = 4
+            velocidadeXBola = velocidadeYBola = -6
+            hRaquete = 70
+            break;
+        case 'Medio':
+            velocidadeJogador2 = 6
+            velocidadeXBola = velocidadeYBola = -10
+            hRaquete = 50
+            break;
+        case 'Dificil':
+            velocidadeJogador2 = 10
+            velocidadeXBola = velocidadeYBola = -15
+            hRaquete = 30
+            break;
+        default:
+            velocidadeJogador2 = Number(prompt("Velocidade do jogador Adversário:"))
+            velocidadeXBola = velocidadeYBola = -Number(prompt("Velocidade da Bola:"))
+            hRaquete = Number(prompt("Tamanho da Raquete:"))
+            break;
+    }
     //Campo
     wCampo = 700
     hCampo = 500
     wRede = 5
     hRede = 500
-    //Jogadores    
-    hRaquete = 60
+    //Jogadores      
     wRaquete = 10
     posicaoJogador1 = posicaoJogador2 = 10
     efeitoRaquete = 0.3
     pontuacaoJogador1 = pontuacaoJogador2 = 0 
-    velocidadeJogador2 = 8   
+    console.log(velocidadeJogador2)                        
     //Bola  
     diametroBola = 10
     xBola = yBola = 300
-    velocidadeXBola = velocidadeYBola = -8
     //Canva
     folhaDesenho = document.getElementById("folha");
     areaDesenho = folhaDesenho.getContext("2d");

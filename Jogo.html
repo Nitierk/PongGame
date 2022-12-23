@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong Game</title>
+    <link rel="icon" type="image/x-icon" href="content/img/pingue-pongue.ico">
+    <link rel="stylesheet" href="styles/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <audio id="som" autoplay="autoplay" controls="controls" loop hidden>
+        <source src="content/song/song.mp3" type="audio/mp3" />
+        seu navegador não suporta HTML5
+    </audio>
+    <div id="Start" class="Start">
+        <div >
+            <h1>
+                Pong Game   
+            </h1>
+        </div>
+        <div>
+            <button class="btn btn-sucess" onclick="Start()">Start</button>
+        </div>
+        <br>
+        <div>
+            <form id="myForm">
+                <fieldset>
+                    <legend>Dificuldade</legend>
+                    <label><input type="radio" id="Facil" name="dificult" value="Facil" checked/> Fácil</label>
+                    <label><input type="radio" id="Médio" name="dificult" value="Medio" /> Médio</label>
+                    <label><input type="radio" id="Dificil" name="dificult" value="Dificil" /> Díficil</label> <br />
+                    <label><input type="radio" id="Personalizado" name="dificult" value="Personalizado" /> Personalizado</label> <br />
+                </fieldset>
+            </form>
+        </div>
+        <br>
+        <div>
+            Volume Música:
+            <input onchange="document.getElementById('som').volume = value/100" type="range" min="0" max="100" value="50">
+            
+	    </div>
+        (Clique na tela para ativar o som)
+        
+        </div>
+    </div>
+    <div>
+        
+        
+        <canvas id="folha" width="700" height="500"></canvas>
+        <script src="script/js.js"></script>
+    </div>
+
+    <script>
+        window.onclick = function () {
+            document.getElementById("som").play()
+
+        }
+    </script>
+</body>
+</html>
